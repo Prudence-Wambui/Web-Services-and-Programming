@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Registration</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+
+<header>
+    <img src="images/logo.png" alt="Hospital Logo" class="logo">
+    <h1>My Hospital - Patient Registration</h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="registration.html">Registration</a></li>
+        <li><a href="records.html">Records</a></li>
+    </ul>
+</nav>
+
+<section>
+    <h2>Register New Patient</h2>
+    <form action="registration.php" method="POST" onsubmit="return validateForm()">
+        <label>First Name:</label>
+        <input type="text" id="fname" name="fname">
+        <span id="fnameError" class="error"></span>
+
+        <label>Last Name:</label>
+        <input type="text" id="lname" name="lname">
+        <span id="lnameError" class="error"></span>
+
+        <label>Gender:</label>
+        <select name="gender">
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Bi-sexual">Bi-sexual</option>
+        </select>
+
+        <label>County:</label>
+        <select name="county">
+            <option value="">Select County</option>
+            <option value="Nairobi">Nairobi</option>
+            <option value="Mombasa">Mombasa</option>
+        </select>
+
+        <label>Date of Birth:</label>
+        <input type="date" name="dob">
+
+        <button type="submit">Register</button>
+    </form>
+</section>
+
+<footer>
+    <p>© 2025 John Doe | Reg No: SCS3208</p>
+</footer>
+
+</body>
+</html>
