@@ -1,52 +1,44 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get form data
-    $firstName = trim($_POST["firstName"]);
-    $lastName = trim($_POST["lastName"]);
-    $gender = trim($_POST["gender"]);
-    $county = trim($_POST["county"]);
+// Database Connection
+$servername = "localhost";
+$username = "root"; // Change if necessary
+$password = ""; // Set your password
+$dbname = "hospital_db"; // Change to your database name
 
-    // Basic validation
-    $errors = [];
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-    if (empty($firstName)) {
-        $errors[] = "First Name is required.";
-    }
-
-    if (empty($lastName)) {
-        $errors[] = "Last Name is required.";
-    }
-
-    if (empty($gender)) {
-        $errors[] = "Please select a gender.";
-    }
-
-    if (empty($county)) {
-        $errors[] = "Please select a county.";
-    }
-
-    // If there are errors, display them
-    if (!empty($errors)) {
-        echo "<h3 style='color: red;'>Errors:</h3>";
-        echo "<ul style='color: red;'>";
-        foreach ($errors as $error) {
-            echo "<li>$error</li>";
-        }
-        echo "</ul>";
-        echo "<a href='registration.html'>Go Back</a>";
-        exit;
-    }
-
-    // If no errors, show success message
-    echo "<h2>Registration Successful</h2>";
-    echo "<p><strong>First Name:</strong> $firstName</p>";
-    echo "<p><strong>Last Name:</strong> $lastName</p>";
-    echo "<p><strong>Gender:</strong> $gender</p>";
-    echo "<p><strong>County:</strong> $county</p>";
-    echo "<br><a href='index.html'>Return to Home</a>";
-} else {
-    // Redirect back if accessed directly
-    header("Location: registration.html");
-    exit;
+// Check Connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
+
+// Check if form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve and sanitize inputs
+    $patientID = trim($_POST['patientID']);
+    $firstName = trim($_POST['firstName']);
+    $middleName = trim($_POST['middleName']);
+    $surname = trim($_POST['surname']);
+    $dob = $_POST['dob'];
+    $gender = $_POST['gender'];
+    $county = $_POST['county'];
+
+    // Validate required fields
+    if (empty($patientID) || empty($firstName) || empty($surname) || empty($dob) || empty($gender) || empty($county)) {
+        echo "<p style='color:red;'>All required fields must be filled!</p>";
+    } else {
+        // Insert into database
+        $sql = "INSERT INTO patients (patientID, firstName, middleName, surname, dob, gender, county) 
+                VALUES ('$patientID', '$firstName', '$middleName', '$surname', '$dob', '$gender', '$county')";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "<p style='color:green;'>Patient registered successfully!</p>";
+        } else {
+            echo "<p style='color:red;'>Error: " . $sql . "<br>" . $conn->error . "</p>";
+        }
+    }
+}
+
+// Close connection
+$conn->close();
 ?>
