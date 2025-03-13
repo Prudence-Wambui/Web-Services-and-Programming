@@ -3,61 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient Registration</title>
+    <title>Register Patient</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
 
-<header>
-    <img src="images/logo.png" alt="Hospital Logo" class="logo">
-    <h1>My Hospital - Patient Registration</h1>
-</header>
+    <header>
+        <img src="images/logo.png" alt="Hospital Logo">
+        <h1>Patient Registration</h1>
+    </header>
 
-<nav>
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="registration.html">Registration</a></li>
-        <li><a href="records.html">Records</a></li>
-    </ul>
-</nav>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="registration.html">Registration</a></li>
+            <li><a href="records.html">Records</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contacts</a></li>
+        </ul>
+    </nav>
 
-<section>
-    <h2>Register New Patient</h2>
-    <form action="registration.php" method="POST" onsubmit="return validateForm()">
+    <form id="patientForm" action="registration.php" method="POST">
+        <label>Patient ID:</label>
+        <input type="text" id="patientID" required>
+        
         <label>First Name:</label>
-        <input type="text" id="fname" name="fname">
-        <span id="fnameError" class="error"></span>
-
-        <label>Last Name:</label>
-        <input type="text" id="lname" name="lname">
-        <span id="lnameError" class="error"></span>
-
+        <input type="text" id="firstName" required>
+        
+        <label>Middle Name:</label>
+        <input type="text" id="middleName">
+        
+        <label>Surname:</label>
+        <input type="text" id="surname" required>
+        
+        <label>Date of Birth:</label>
+        <input type="date" id="dob" required>
+        
         <label>Gender:</label>
-        <select name="gender">
-            <option value="">Select Gender</option>
+        <select id="gender">
             <option value="Male">Male</option>
             <option value="Female">Female</option>
             <option value="Bi-sexual">Bi-sexual</option>
         </select>
 
         <label>County:</label>
-        <select name="county">
-            <option value="">Select County</option>
-            <option value="Nairobi">Nairobi</option>
-            <option value="Mombasa">Mombasa</option>
-        </select>
+        <select id="county"></select>
 
-        <label>Date of Birth:</label>
-        <input type="date" name="dob">
-
-        <button type="submit">Register</button>
+        <button type="submit">Send</button>
+        <button type="reset">Clear</button>
     </form>
-</section>
-
-<footer>
-    <p>© 2025 John Doe | Reg No: SCS3208</p>
-</footer>
 
 </body>
 </html>
