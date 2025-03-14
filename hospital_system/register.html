@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Registration</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="js/validation.js"></script>
+</head>
+<body>
+
+<header>
+    <img src="images/logo.png" alt="Hospital Logo">
+    <h1>PATIENT REGISTRATION</h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="register.html">Registration</a></li>
+        <li><a href="records.html">Records</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contacts</a></li>
+    </ul>
+</nav>
+
+<section>
+    <h2>Register Patient</h2>
+    <form action="php/registration.php" method="POST" id="patientForm">
+        <label for="patientID">Patient ID:</label>
+        <input type="text" id="patientID" name="patientID" required>
+
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required>
+
+        <label for="middleName">Middle Name:</label>
+        <input type="text" id="middleName" name="middleName">
+
+        <label for="surname">Surname:</label>
+        <input type="text" id="surname" name="surname" required>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Bi-sexual">Bi-sexual</option>
+        </select>
+
+        <label for="county">County:</label>
+        <select id="county" name="county">
+            <option value="Nairobi">Nairobi</option>
+            <option value="Mombasa">Mombasa</option>
+            <option value="Kisumu">Kisumu</option>
+            <option value="Eldoret">Eldoret</option>
+        </select>
+
+        <button type="submit">Send</button>
+        <button type="reset">Clear</button>
+    </form>
+</section>
+
+<br>
+<br>
+<br>
+
+
+<footer>
+    <p>&copy; 2025 | Developed by Prudence Wambui | Reg No: SCS3/147044/2023</p>
+</footer>
+
+</body>
+</html>
