@@ -5,7 +5,10 @@ function clean_input($data) {
   return htmlspecialchars(stripslashes(trim($data)));
 }
 
+$message = "";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  // Patient data
   $patientID = clean_input($_POST['patientID']);
   $firstName = clean_input($_POST['firstName']);
   $middleName = clean_input($_POST['middleName']);
@@ -14,15 +17,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $gender = clean_input($_POST['gender']);
   $county = clean_input($_POST['county']);
 
-  // Insert into DB
-  $sql = "INSERT INTO patients (patientID, firstName, middleName, surname, dob, gender, county)
-          VALUES ('$patientID', '$firstName', '$middleName', '$surname', '$dob', '$gender', '$county')";
+  // Next of kin data
+  $kinFirstName = clean_input($_POST['kinFirstName']);
+  $kinSurname = clean_input($_POST['kinSurname']);
+  $relationship = clean_input($_POST['relationship']);
 
-  if ($conn->query($sql) === TRUE) {
+  // Prepare SQL statements
+  $stmt1 = $conn->prepare("INSERT INTO patients (patientID, firstName, middleName, surname, dob, gender, county)
+                           VALUES (?, ?, ?, ?, ?, ?, ?)");
+  $stmt1->bind_param("sssssss", $patientID, $firstName, $middleName, $surname, $dob, $gender, $county);
+
+  $stmt2 = $conn->prepare("INSERT INTO next_of_kin (patientID, firstName, surname, relationship)
+                           VALUES (?, ?, ?, ?)");
+  $stmt2->bind_param("ssss", $patientID, $kinFirstName, $kinSurname, $relationship);
+
+  if ($stmt1->execute() && $stmt2->execute()) {
     $message = "Registration successful!";
   } else {
     $message = "Error: " . $conn->error;
   }
+
+  $stmt1->close();
+  $stmt2->close();
+  $conn->close();
 }
 ?>
 
