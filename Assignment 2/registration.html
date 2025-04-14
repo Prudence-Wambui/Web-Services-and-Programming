@@ -1,0 +1,82 @@
+<!-- File: registration.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register Patient | Harmony General Hospital</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="validation.js" defer></script>
+</head>
+<body>
+  <div class="header">
+    <img src="https://w7.pngwing.com/pngs/877/824/png-transparent-icon-hospital-computer-icons-medicine-others-miscellaneous-text-rectangle.png" alt="Hospital Logo" class="logo" />
+    <h1>Harmony General Hospital</h1>
+  </div>
+
+  <nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="registration.html" class="active">Registration</a>
+    <a href="records.html">Records</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contacts</a>
+  </nav>
+
+  <div class="form-container">
+    <h2>Register Patient</h2>
+    <form id="patientForm" method="POST" action="registration.php">
+      <!-- Basic Info -->
+      <label for="patientID">Patient ID:</label>
+      <input type="text" id="patientID" name="patientID" required>
+      <span class="error" id="patientIDError"></span>
+
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" required>
+      <span class="error" id="firstNameError"></span>
+
+      <label for="middleName">Middle Name:</label>
+      <input type="text" id="middleName" name="middleName">
+      
+      <label for="surname">Surname:</label>
+      <input type="text" id="surname" name="surname" required>
+      <span class="error" id="surnameError"></span>
+
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" name="dob" required>
+      <span class="error" id="dobError"></span>
+
+      <!-- Gender -->
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender" required>
+        <option value="">-- Select --</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Bi-sexual">Bi-sexual</option>
+      </select>
+      <span class="error" id="genderError"></span>
+
+      <!-- County -->
+      <label for="county">County:</label>
+      <select id="county" name="county" required>
+        <option value="">-- Select County --</option>
+        <!-- You can add more counties here -->
+        <option value="Nairobi">Nairobi</option>
+        <option value="Kiambu">Kiambu</option>
+        <option value="Mombasa">Mombasa</option>
+        <option value="Kisumu">Kisumu</option>
+        <!-- ... up to 47 counties -->
+      </select>
+      <span class="error" id="countyError"></span>
+
+      <!-- Action Buttons -->
+      <div class="form-buttons">
+        <button type="submit">Send</button>
+        <button type="reset">Clear</button>
+      </div>
+    </form>
+  </div>
+
+  <footer>
+    &copy; 2025 | Prudence Wambui | SC320-0001/2023
+  </footer>
+</body>
+</html>
